@@ -653,6 +653,7 @@ class LookedUpApplicationLoadBalancer extends Resource implements IApplicationLo
       loadBalancer: this,
     });
   }
+
 }
 
 /**

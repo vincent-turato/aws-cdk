@@ -513,4 +513,29 @@ describe('tests', () => {
     // THEN
     expect(importedTg.targetGroupName).toEqual('myNlbTargetGroup');
   });
+
+  test('dbgme', () => {
+    // GIVEN
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'Stack');
+    const vpc = new ec2.Vpc(stack, 'VPC', {});
+    const tg = new elbv2.NetworkTargetGroup(stack, 'TargetGroup', {
+      vpc,
+      port: 80,
+    });
+
+    // WHEN
+    tg.configureHealthCheck({
+      protocol: elbv2.Protocol.TCP,
+      port: '5000',
+    });
+    const x = app.synth();
+    expect(x).toEqual(null);
+
+    // THEN
+    expect(true).toEqual(false);
+    expect(() => {
+      app.synth();
+    });
+  });
 });

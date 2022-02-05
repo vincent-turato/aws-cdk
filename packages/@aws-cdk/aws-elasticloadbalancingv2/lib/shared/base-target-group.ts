@@ -298,6 +298,7 @@ export abstract class TargetGroupBase extends CoreConstruct implements ITargetGr
    */
   public configureHealthCheck(healthCheck: HealthCheck) {
     this.healthCheck = healthCheck;
+    // this.resource.healthCheckPort = cdk.Lazy.string({ produce: () => this.healthCheck?.port });
   }
 
   /**

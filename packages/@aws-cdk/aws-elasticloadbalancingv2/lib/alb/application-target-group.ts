@@ -12,7 +12,7 @@ import { ImportedTargetGroupBase } from '../shared/imported';
 import { determineProtocolAndPort } from '../shared/util';
 import { IApplicationListener } from './application-listener';
 import { HttpCodeTarget } from './application-load-balancer';
-
+import { HealthCheck } from '../shared/base-target-group';
 // keep this import separate from other imports to reduce chance for merge conflicts with v2-main
 // eslint-disable-next-line no-duplicate-imports, import/order
 import { Construct as CoreConstruct } from '@aws-cdk/core';
@@ -414,6 +414,10 @@ export class ApplicationTargetGroup extends TargetGroupBase implements IApplicat
       }),
       ...props,
     }).attachTo(this);
+  }
+
+  public configureHealthCheck(healthCheck: HealthCheck) {
+    super.configureHealthCheck(healthCheck);
   }
 }
 
